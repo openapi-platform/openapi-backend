@@ -1,0 +1,110 @@
+config:
+  server:
+    http:
+      addr: 0.0.0.0:8000
+      timeout: 2s
+    grpc:
+      addr: 0.0.0.0:9000
+      timeout: 2s
+  data:
+    github:
+      accessTokenUrl: https://github.com/login/oauth/access_token
+      userInfoUrl: https://api.github.com/user
+      clientId: 946ef3f8d899cfe8c1bf
+      clientSecret: c76c3e9eab0b7856f527b624e925330cbcebf72b
+    gitee:
+      accessTokenUrl: https://gitee.com/oauth/token
+      userInfoUrl: https://gitee.com/api/v5/user
+      clientId: 5e3e335065670e0306aec7b9dcb64900aa23fa022f297f27fd2dc0d0e9946fdf
+      clientSecret: 68c9a35a14788875ecdb5ddb40bcb9862f140d9a20cad8fc6fc189ed75e3de61
+      redirectUri: http://matrixtech.cloud/main/login/gitee
+      grantType: authorization_code
+    wechat:
+      accessTokenUrl: https://api.weixin.qq.com/sns/oauth2/access_token
+      userInfoUrl: https://api.weixin.qq.com/sns/userinfo
+      appid: wx1aba6dd729b7d78a
+      secret: 51bb5db9a33d6e55525f707192baaaab
+      grantType: authorization_code
+    qq:
+      accessTokenUrl: https://graph.qq.com/oauth2.0/token
+      openIdUrl: https://graph.qq.com/oauth2.0/me
+      userInfoUrl: https://graph.qq.com/user/get_user_info
+      clientId: "102034072"
+      clientSecret: b6UmIjz1pOq48zg8
+      redirectUri: http://matrixtech.cloud/main/login/qq
+      grantType: authorization_code
+    database:
+      driver: mysql
+      source: user:201020120402ssS~@tcp(sh-cynosdbmysql-grp-f1e0bce2.sql.tencentcdb.com:20413)/core?charset=utf8mb4&parseTime=True&loc=Local
+    redis:
+      addr: sh-crs-qtujlyq3.sql.tencentcdb.com:23781
+      read_timeout: 0.2s
+      write_timeout: 0.2s
+      password: "201020120402ssS~"
+    rocketmq:
+      serverAddress: https://MQ_INST_rocketmq247pp4v2e3zn_matrix.tdmq-rocketmq.ap-sh.public.tencenttdmq.com:9876
+      secretKey: matrix
+      accessKey: eyJrZXlJZCI6InJvY2tldG1xLTI0N3BwNHYyZTN6biIsImFsZyI6IkhTMjU2In0.eyJzdWIiOiJyb2NrZXRtcS0yNDdwcDR2MmUzem5fbWF0cml4In0.oSQ-Y2W2cw65fWJcOyHo1dPghaUHhko12RAF0xiXZUs
+      nameSpace: MQ_INST_rocketmq247pp4v2e3zn_matrix
+      groupName: matrix
+    aliCode:
+      domainUrl: dysmsapi.aliyuncs.com
+      accessKeyId: LTAI5t8Ry39BFmXRWLyd6JuD
+      accessKeySecret: hxVV29zans9FBknDAn5o5O1EuobsLE
+      signName: "魔方技术"
+    mail:
+      code: JTVOCZEPTZQNNWME
+    elasticSearch:
+      endpoint: http://1.15.70.199:30001
+      user: elastic
+      password: B9rI6iObSuvHW22ZlMB7
+    cos:
+      url: https://user-1309416642.cos.ap-shanghai.myqcloud.com
+      region: ap-shanghai
+      secret_id: AKIDwlQ5dy2rTqy2vlQskOn8HCsIRL1SeDZg
+      secret_key: wc4KRL9l7MRL1SghU2MVRBkFPL5e07nQ
+      buckets:
+        - appid: "1309416642"
+          bucket: user-1309416642
+          folder: "avatar"
+        - appid: "1309416642"
+          bucket: creation-1309416642
+          folder: "article"
+      policy:
+        statement:
+          - action:
+              - "name/cos:PostObject"
+              - "name/cos:PutObject"
+              - "name/cos:InitiateMultipartUpload"
+              - "name/cos:ListMultipartUploads"
+              - "name/cos:ListParts"
+              - "name/cos:UploadPart"
+              - "name/cos:CompleteMultipartUpload"
+            effect: "allow"
+            resource:
+              - "qcs::cos:ap-shanghai:uid/1309416642:user-1309416642/avatar/"
+              - "qcs::cos:ap-shanghai:uid/1309416642:user-1309416642/cover/"
+              - "qcs::cos:ap-shanghai:uid/1309416642:creation-1309416642/article/"
+              - "qcs::cos:ap-shanghai:uid/1309416642:creation-1309416642/talk/"
+              - "qcs::cos:ap-shanghai:uid/1309416642:creation-1309416642/collect/"
+              - "qcs::cos:ap-shanghai:uid/1309416642:creation-1309416642/collections/"
+              - "qcs::cos:ap-shanghai:uid/1309416642:creation-1309416642/column/"
+              - "qcs::cos:ap-shanghai:uid/1309416642:comment-1309416642/comment/"
+          - action:
+              - "name/cos:HeadObject"
+              - "name/cos:GetObject"
+              - "name/cos:OptionsObject"
+            effect: "allow"
+            resource:
+              - "qcs::cos:ap-shanghai:uid/1309416642:user-1309416642/audit_freeze_backup/increment_audit/avatar/"
+              - "qcs::cos:ap-shanghai:uid/1309416642:user-1309416642/audit_freeze_backup/increment_audit/cover/"
+              - "qcs::cos:ap-shanghai:uid/1309416642:creation-1309416642/audit_freeze_backup/increment_audit/article/"
+              - "qcs::cos:ap-shanghai:uid/1309416642:creation-1309416642/audit_freeze_backup/increment_audit/talk/"
+              - "qcs::cos:ap-shanghai:uid/1309416642:creation-1309416642/audit_freeze_backup/increment_audit/column/"  
+  auth:
+    api_key: some-secret-key-for-forntend
+  log:
+    host: ap-shanghai.cls.tencentcs.com
+    accessKeyID: AKIDnTzGKBnAHBqT6cz82yjJfmphJgpkPpHu
+    accessKeySecret: Y1SjpjaQF3jDaptkNo10omYjohOtENOE
+    topicID: 6df46e09-a25b-4e13-a49a-7ee9bcbb7955

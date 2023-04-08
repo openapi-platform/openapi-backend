@@ -1,0 +1,134 @@
+syntax = "proto3";
+package kratos.api;
+
+option go_package = "interface/service/internal/conf;conf";
+
+import "google/protobuf/duration.proto";
+
+message Bootstrap {
+  Config config = 1;
+}
+
+message Config{
+  Server server = 1;
+  Data data = 2;
+  Auth auth = 3;
+  Log log = 4;
+}
+
+message Server {
+  message HTTP {
+    string network = 1;
+    string addr = 2;
+    google.protobuf.Duration timeout = 3;
+  }
+  message GRPC {
+    string network = 1;
+    string addr = 2;
+    google.protobuf.Duration timeout = 3;
+  }
+  HTTP http = 1;
+  GRPC grpc = 2;
+}
+
+message Data {
+  message Database {
+    string driver = 1;
+    string source = 2;
+  }
+  message Redis {
+    string network = 1;
+    string addr = 2;
+    string password = 3;
+    google.protobuf.Duration read_timeout = 4;
+    google.protobuf.Duration write_timeout = 5;
+  }
+  message Rocketmq{
+    string serverAddress = 1;
+    string secretKey = 2;
+    string accessKey = 3;
+    string nameSpace = 4;
+    string groupName = 5;
+  }
+  message Cos{
+    message Statement{
+      repeated string action = 1;
+      string effect = 2;
+      repeated string resource = 3;
+    }
+    message Policy{
+      repeated Statement statement = 1;
+    }
+    string url = 1;
+    string secret_id = 2;
+    string secret_key = 3;
+    string region = 4;
+    Policy policy = 5;
+  }
+  message ElasticSearch{
+    string endpoint = 1;
+    string user = 2;
+    string password = 3;
+  }
+  message Github{
+    string accessTokenUrl = 1;
+    string userInfoUrl = 2;
+    string clientId = 3;
+    string clientSecret = 4;
+  }
+  message Gitee{
+    string accessTokenUrl = 1;
+    string userInfoUrl = 2;
+    string clientId = 3;
+    string clientSecret = 4;
+    string grantType = 5;
+    string redirectUri = 6;
+  }
+  message Wechat{
+    string accessTokenUrl = 1;
+    string userInfoUrl = 2;
+    string appid = 3;
+    string secret = 4;
+    string grantType = 5;
+  }
+  message QQ{
+    string accessTokenUrl = 1;
+    string openIdUrl = 2;
+    string userInfoUrl = 3;
+    string clientId = 4;
+    string clientSecret = 5;
+    string grantType = 6;
+    string redirectUri = 7;
+  }
+  message AliCode{
+    string domainUrl = 1;
+    string accessKeyId = 2;
+    string accessKeySecret = 3;
+    string signName = 4;
+  }
+  message Mail{
+    string code = 1;
+  }
+  Database database = 1;
+  Redis redis = 2;
+  Rocketmq rocketmq = 3;
+  ElasticSearch elasticSearch = 4;
+  Cos cos = 5;
+  Github github = 6;
+  Gitee gitee = 7;
+  Wechat wechat = 8;
+  QQ qq = 9;
+  AliCode aliCode = 10;
+  Mail mail = 11;
+}
+
+message Auth {
+  string api_key = 1;
+}
+
+message Log {
+  string host = 1;
+  string accessKeyID = 2;
+  string accessKeySecret = 3;
+  string topicID = 4;
+}
