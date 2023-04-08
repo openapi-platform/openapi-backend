@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package interface.v1;
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "validate/validate.proto";
+
+option go_package = "api/interface/service/v1;v1";
+
+service Interface {
+  rpc Test (TestReq) returns (google.protobuf.Empty){}
+}
+
+message TestReq{
+  string name = 1 ;
+}
